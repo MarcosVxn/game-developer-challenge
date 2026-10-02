@@ -1,26 +1,48 @@
-import { useEffect, useRef } from "react"
-import { createGame } from "./game/core/Game"
+import { useState } from "react";
+import { GameScreen } from "./pages/gameScreen";
+import { MainMenu } from "./pages/MainMenu";
+import { Options } from "./pages/Options";
+import { ResultScreen } from "./pages/ResultScreen";
 
+type Screen =
+    | "menu"
+    | "options"
+    | "game"
+    | "result";
 
-function App(){
-  const gameContainer = useRef<HTMLDivElement>(null)
+function App() {
+    const [screen, setScreen] =
+        useState<Screen>("menu");
 
-  useEffect(() => {
-    if (!gameContainer.current) return
+    switch (screen) {
+        case "menu":
+            return (
+                <MainMenu
+                    onPlay={() => setScreen("game")}
+                    onOptions={() => setScreen("options")}
+                />
+            );
 
-    createGame(gameContainer.current)
-  }, [])
+        case "options":
+            return (
+                <Options
+                    onBack={() => setScreen("menu")}
+                />
+            );
 
-  return(
-    <div
-    ref = {gameContainer}
-    style={{
-      width: '100vw',
-      height: '100vh',
-    }}
-    />
-  )
+        case "game":
+            return <GameScreen />;
 
+        case "result":
+            return (
+                <ResultScreen
+                    score={0}
+                    victory={false}
+                    onPlayAgain={() => setScreen("game")}
+                    onMenu={() => setScreen("menu")}
+                />
+            );
+    }
 }
 
-export default App
+export default App;

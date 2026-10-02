@@ -7,7 +7,6 @@ export async function createPlayer() {
     const player = new Sprite(texture);
 
     player.anchor.set(0.5);
-    player.position.set(400, 300);
 
     return player;
 }

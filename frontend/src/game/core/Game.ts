@@ -1,25 +1,63 @@
 import { Application } from "pixi.js";
-import { createPlayer } from "../entities/Player";
+
 import { createArena } from "../world/Arena";
+import { createPlayer } from "../entities/Player";
+import { InputManager } from "./InputManager";
+import { GameLoop } from "./GameLoop";
 
-export async function createGame(container: HTMLElement) {
-    const app = new Application();
+export class Game {
+    private app: Application;
+    private input: InputManager;
+    private loop: GameLoop;
 
-    await app.init({
-        width: 2048,
-        height: 1152,
-        background: "#000000",
-    });
+    constructor(app: Application) {
+        this.app = app;
+        this.input = new InputManager();
+        this.loop = new GameLoop();
+    }
 
-    const arena = await createArena();
+    async start() {
+        const arena = await createArena(
+            this.app.screen.width,
+            this.app.screen.height
+        );
 
-    app.stage.addChild(arena);
+        this.app.stage.addChild(arena);
 
-    const player = await createPlayer();
+        const player = await createPlayer();
 
-    app.stage.addChild(player);
+        player.position.set(
+            this.app.screen.width / 2,
+            this.app.screen.height / 2
+        );
 
-    container.appendChild(app.canvas);
+        this.app.stage.addChild(player);
 
-    return app;
+        this.input.start();
+
+        this.loop.start((deltaTime) => {
+            this.update(deltaTime);
+        });
+    }
+
+    private update(deltaTime: number) {
+        // AQUI ENTRA SUA LÓGICA
+        //
+        // input
+        // movimento
+        // inimigos
+        // projéteis
+        // colisões
+        // dano
+        // spawn
+        // timer
+        // score
+    }
+
+    destroy() {
+        this.loop.stop();
+        this.input.stop();
+
+        this.app.destroy(true);
+    }
 }
