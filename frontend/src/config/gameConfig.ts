@@ -31,7 +31,7 @@ export interface GameConfig {
 
 export const defaultGameConfig: GameConfig = {
     sessionTime: 120,
-    enemySpawnTime: 5,
+    enemySpawnTime: 3,
 
     player: {
         health: 100,

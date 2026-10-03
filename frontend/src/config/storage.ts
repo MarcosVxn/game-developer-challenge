@@ -15,7 +15,7 @@ export function loadSettings(): GameSettings {
     if (!savedSettings) {
         return {
             sessionTime: 120,
-            enemySpawnTime: 5,
+            enemySpawnTime: 3,
         };
     }
 

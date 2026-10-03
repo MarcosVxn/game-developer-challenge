@@ -1,0 +1,72 @@
+.game-ui {
+    --cream: #ffe4a8;
+    --muted: #bac9d0;
+    --gold: #ffcc70;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    overflow: auto;
+    padding: 3vh 2.5vw;
+    color: var(--cream);
+    font-family: Nunito, "Trebuchet MS", sans-serif;
+    background: radial-gradient(ellipse at 18% 22%, #39834e 0 9%, transparent 9.2%), radial-gradient(ellipse at 86% 82%, #39834e 0 12%, transparent 12.2%), linear-gradient(#087e9b88,#087e9b88), url("../assets/png/default/tiles/tile_73.png") center / 192px 192px repeat;
+}
+.game-panel {
+    position: relative;
+    box-sizing: border-box;
+    border: 40px solid transparent;
+    border-image-source: url("../assets/png/default/ui/menu/panel_menu.png");
+    border-image-slice: 40 fill;
+    border-image-width: 40px;
+    border-image-repeat: stretch;
+    filter: drop-shadow(0 12px 18px #06121b80);
+}
+.menu-panel {
+    width: min(780px, 74vw, 82vh);
+    aspect-ratio: 780 / 730;
+    min-height: 560px;
+    padding: 8.5% 12% 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.menu-title { display: block; width: min(100%, 500px); height: auto; margin: 2% 0 2%; }
+.menu-subtitle { margin: 0 0 5%; color: #f4dcae; font-size: clamp(10px, .8vw, 14px); font-weight: 900; letter-spacing: .32em; }
+.main-actions { width: 74%; display: grid; gap: 12px; }
+.game-button {
+    border: 0;
+    color: #35220e;
+    font: 900 clamp(15px, 1.4vw, 25px) Nunito, "Trebuchet MS", sans-serif;
+    cursor: pointer;
+    background-color: transparent;
+    background-position: center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    transition: filter .15s ease, transform .15s ease;
+    text-shadow: 0 1px #ffe5a5;
+}
+.game-button:hover { filter: brightness(1.16); transform: translateY(-2px); }
+.game-button:active { transform: translateY(1px) scale(.99); }
+.game-button:focus-visible { outline: 3px solid #fff1c5; outline-offset: 2px; }
+.game-button.primary { width: 100%; height: 74px; background-image: url("../assets/png/default/ui/menu/button_primary_normal.png"); }
+.game-button.secondary { flex: 1; height: 54px; color: #f5e8c8; font-size: clamp(11px, .95vw, 16px); text-shadow: 0 1px #12202c; background-image: url("../assets/png/default/ui/menu/button_secondary_normal.png"); }
+.menu-ship { width: 62px; height: 74px; object-fit: contain; margin-top: 14px; filter: drop-shadow(0 4px 2px #0008); }
+.menu-description { margin: 8px 0 20px; color: #e9d5aa; font-size: clamp(11px, .85vw, 15px); font-weight: 900; }
+.secondary-actions { width: 83%; display: flex; gap: 18px; margin-top: auto; }
+.studio-logo { position: fixed; right: 3.2vw; bottom: 3.3vh; width: clamp(100px, 8vw, 150px); max-height: 56px; filter: brightness(0) invert(1); }
+@media (max-width: 700px) {
+    .game-ui { padding: 12px; }
+    .menu-panel { width: min(94vw, 580px); min-height: 0; aspect-ratio: 780 / 730; padding: 10% 12% 8%; }
+    .menu-title { width: 100%; }
+    .main-actions { width: 82%; gap: 5px; }
+    .game-button.primary { height: clamp(45px, 10vw, 64px); }
+    .menu-ship { width: 42px; height: 48px; margin-top: 5px; }
+    .menu-description { margin: 4px 0 8px; text-align: center; }
+    .secondary-actions { width: 95%; gap: 5px; }
+    .game-button.secondary { height: 40px; }
+    .studio-logo { right: 12px; bottom: 10px; width: 92px; }
+}

@@ -1,4 +1,5 @@
 import { Sprite, Texture } from "pixi.js";
+export interface TargetPosition { x: number; y: number; }
 
 export abstract class Enemy extends Sprite {
     health: number;
@@ -20,12 +21,12 @@ export abstract class Enemy extends Sprite {
     }
 
     takeDamage(amount: number) {
-        this.health -= amount;
+        this.health = Math.max(0, this.health - amount);
     }
 
     isDead() {
         return this.health <= 0;
     }
 
-    abstract update(deltaTime: number): void;
+    abstract update(deltaTime: number, target?: TargetPosition, preferredDistance?: number): boolean;
 }

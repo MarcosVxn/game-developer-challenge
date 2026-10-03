@@ -1,0 +1,6 @@
+.result-panel { gap: 6px; text-align: center; }
+.result-panel h1 { margin-bottom: 4px; font-size: clamp(24px, 2.1vw, 38px); white-space: nowrap; }
+.result-score { color: #ffd580; font-size: clamp(58px, 5vw, 92px); line-height: 1.05; }
+.result-summary { margin: 2px 0 20px; color: #e2d0aa; font-size: clamp(12px, 1vw, 17px); font-weight: 900; }
+.result-panel .game-button { width: min(330px, 100%); height: 72px; }
+@media(max-width:700px) { .result-panel h1 { font-size: clamp(18px,5vw,28px); }.result-panel .game-button { height: 52px; } }
